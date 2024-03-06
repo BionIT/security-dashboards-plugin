@@ -113,7 +113,7 @@ export class SecurityPlugin
           excludeFromDisabledTransportCategories(config.disabledTransportCategories.exclude);
           excludeFromDisabledRestCategories(config.disabledRestCategories.exclude);
 
-          return renderApp(coreStart, depsStart as SecurityPluginStartDependencies, params, config);
+          return renderApp(coreStart, depsStart as SecurityPluginStartDependencies, params, config, params.setHeaderActionMenu);
         },
         category: DEFAULT_APP_CATEGORIES.management,
       });

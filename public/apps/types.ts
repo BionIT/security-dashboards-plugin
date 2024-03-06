@@ -18,10 +18,11 @@ import { SecurityPluginStartDependencies, ClientConfigType, DashboardsInfo } fro
 
 export interface AppDependencies {
   coreStart: CoreStart;
-  navigation: SecurityPluginStartDependencies;
+  securityPluginStartDeps: SecurityPluginStartDependencies;
   params: AppMountParameters;
   config: ClientConfigType;
   dashboardsInfo: DashboardsInfo;
+  setHeaderActionMenu: AppMountParameters['setHeaderActionMenu'];
 }
 
 export interface BreadcrumbsPageDependencies extends AppDependencies {

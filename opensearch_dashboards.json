@@ -7,13 +7,14 @@
   ],
   "requiredPlugins": [
     "navigation",
-    "savedObjectsManagement"
+    "savedObjectsManagement",
+    "opensearchDashboardsReact"
   ],
   "optionalPlugins": [
     "managementOverview",
-    "dataSource"
+    "dataSource",
+    "dataSourceManagement"
   ],
-  "requiredBundles": ["dataSourceManagement"],
   "server": true,
   "ui": true
 }

@@ -24,27 +24,6 @@ export async function setupClusterSelector(
   deps: SecurityPluginStartDependencies
 ) {
   if (deps.dataSource?.dataSourceEnabled) {
-    coreStart.chrome.navControls.registerRight({
-      // Pin to left of the avatar, here needs a number < 1000
-      // TODO: figure out how to show this only in the security plugin instead of being registered globally
-      // Core may be working on an optional picker that gets exposed to all plugins
-      // Leaving this as a TODO to figure out the rest of the flow, especially around changing context of API calls
-      // in each specific tab.
-      order: 500,
-      mount: (element: HTMLElement) => {
-        ReactDOM.render(
-          <ClusterSelector
-            savedObjectsClient={coreStart.savedObjects.client}
-            notifications={coreStart.notifications}
-            onSelectedDataSource={() => {}}
-            disabled={false}
-            hideLocalCluster={false}
-            fullWidth={true}
-          />,
-          element
-        );
-        return () => ReactDOM.unmountComponentAtNode(element);
-      },
-    });
+    return <deps.navigation.ui.TopNavMenu appName={'test'} showDataSourcePicker={true}/>
   }
 }

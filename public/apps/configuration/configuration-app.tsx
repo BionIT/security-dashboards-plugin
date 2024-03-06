@@ -24,11 +24,12 @@ import { AppRouter } from './app-router';
 
 export function renderApp(
   coreStart: CoreStart,
-  navigation: SecurityPluginStartDependencies,
+  securityPluginStartDeps: SecurityPluginStartDependencies,
   params: AppMountParameters,
-  config: ClientConfigType
+  config: ClientConfigType,
+  setHeaderActionMenu: AppMountParameters['setHeaderActionMenu'],
 ) {
-  const deps = { coreStart, navigation, params, config };
+  const deps = { coreStart, securityPluginStartDeps, params, config, setHeaderActionMenu };
   ReactDOM.render(
     <I18nProvider>
       <AppRouter {...deps} />

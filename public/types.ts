@@ -35,6 +35,7 @@ export interface SecurityPluginStartDependencies {
   navigation: NavigationPublicPluginStart;
   savedObjectsManagement: SavedObjectsManagementPluginStart;
   dataSource: DataSourcePluginStart;
+  
 }
 
 export interface AuthInfo {
