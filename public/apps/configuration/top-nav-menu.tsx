@@ -22,12 +22,13 @@ import { AppDependencies } from '../types';
 
 export interface TopNavMenuProps extends AppDependencies {
   dataSourcePickerReadOnly: boolean
+  random: any;
 }
 
-export const TopNavMenu = (props: TopNavMenuProps) => {
+export const SecurityPluginTopNavMenu = (props: TopNavMenuProps) => {
   const {securityPluginStartDeps, dataSourcePickerReadOnly, setHeaderActionMenu} = props;
   const TopNavMenu = securityPluginStartDeps.navigation.ui.TopNavMenu;
   const dataSourceEnabled = securityPluginStartDeps.dataSource.dataSourceEnabled;
   
-  return <TopNavMenu appName={PLUGIN_NAME} dataSourcePickerReadOnly={dataSourcePickerReadOnly} showDataSourcePicker={dataSourceEnabled} setMenuMountPoint={setHeaderActionMenu}/>
+  return <TopNavMenu appName={PLUGIN_NAME} disableDataSourcePicker={dataSourcePickerReadOnly} showDataSourcePicker={dataSourceEnabled} setMenuMountPoint={setHeaderActionMenu} dataSourceCallBackFunc={props.random}/>
 }

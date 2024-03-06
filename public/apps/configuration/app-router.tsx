@@ -41,7 +41,7 @@ import { ResourceType } from '../../../common';
 import { buildHashUrl, buildUrl } from './utils/url-builder';
 import { CrossPageToast } from './cross-page-toast';
 import { useOpenSearchDashboards } from '../../../../../src/plugins/opensearch_dashboards_react/public';
-import { TopNavMenu } from './top-nav-menu';
+import { SecurityPluginTopNavMenu, TopNavMenu } from './top-nav-menu';
 
 const LANDING_PAGE_URL = '/getstarted';
 
@@ -257,7 +257,7 @@ export function AppRouter(props: AppDependencies) {
               path={ROUTE_MAP.tenants.href}
               render={() => {
                 setGlobalBreadcrumbs(ResourceType.tenants);
-                return <><TopNavMenu dataSourcePickerReadOnly={true} {...props}/><TenantList tabID={'Manage'} {...props} /></>;
+                return <><SecurityPluginTopNavMenu dataSourcePickerReadOnly={true} {...props}/><TenantList tabID={'Manage'} {...props} /></>;
               }}
             />
             <Route
@@ -265,14 +265,14 @@ export function AppRouter(props: AppDependencies) {
               render={() => {
                 setGlobalBreadcrumbs(ResourceType.tenants);
                 
-                return <><TopNavMenu dataSourcePickerReadOnly={true} {...props}/><TenantList tabID={'Configure'} {...props} /></>;
+                return <><SecurityPluginTopNavMenu dataSourcePickerReadOnly={true} {...props}/><TenantList tabID={'Configure'} {...props} /></>;
               }}
             />
             <Route
               path={ROUTE_MAP.getStarted.href}
               render={() => {
                 setGlobalBreadcrumbs();
-                return (<><TopNavMenu {...props} dataSourcePickerReadOnly={false}/><GetStarted {...props} /></>);
+                return (<><GetStarted {...props} /></>);
               }}
             />
             <Redirect exact from="/" to={LANDING_PAGE_URL} />

@@ -50,7 +50,6 @@ import { addTenantToShareURL } from './services/shared-link';
 import { interceptError } from './utils/logout-utils';
 import { tenantColumn, getNamespacesToRegister } from './apps/configuration/utils/tenant-utils';
 import { getDashboardsInfoSafe } from './utils/dashboards-info-utils';
-import { setupClusterSelector } from './apps/account/cluster-selector';
 
 async function hasApiPermission(core: CoreSetup): Promise<boolean | undefined> {
   try {
@@ -191,7 +190,6 @@ export class SecurityPlugin
     const config = this.initializerContext.config.get<ClientConfigType>();
 
     setupTopNavButton(core, config);
-    setupClusterSelector(core, deps);
 
     if (config.ui.autologout) {
       // logout the user when getting 401 unauthorized, e.g. when session timed out.

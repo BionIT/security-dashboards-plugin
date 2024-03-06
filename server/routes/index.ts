@@ -752,7 +752,7 @@ export function defineRoutes(router: IRouter, dataSourceEnabled: boolean) {
       }
     },
     async (context, request, response) => {
-      if (!dataSourceEnabled) {
+      if (!dataSourceEnabled || !request.body?.dataSourceId) {
       const client = context.security_plugin.esClient.asScoped(request);
       let esResponse;
       try {
@@ -766,7 +766,6 @@ export function defineRoutes(router: IRouter, dataSourceEnabled: boolean) {
         return errorResponse(response, error);
       }
     } else {
-      console.log(request.body)
       const client = context.dataSource.opensearch.legacy.getClient(request.body?.dataSourceId);
       let esResponse;
       try{

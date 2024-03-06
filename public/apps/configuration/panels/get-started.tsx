@@ -25,7 +25,7 @@ import {
   EuiText,
   EuiTitle,
 } from '@elastic/eui';
-import React from 'react';
+import React, { useState } from 'react';
 import { FormattedMessage } from '@osd/i18n/react';
 import { AppDependencies } from '../../types';
 import { buildHashUrl } from '../utils/url-builder';
@@ -34,6 +34,8 @@ import { ResourceType } from '../../../../common';
 import { API_ENDPOINT_CACHE, DocLinks } from '../constants';
 import { ExternalLink, ExternalLinkButton } from '../utils/display-utils';
 import { httpDelete } from '../utils/request-utils';
+import { SecurityPluginTopNavMenu, TopNavMenu } from '../top-nav-menu';
+import { setData } from 'src/plugins/vis_type_vega/public/services';
 
 const addBackendStep = {
   title: 'Add backends',
@@ -157,6 +159,8 @@ const setOfSteps = [
 ];
 
 export function GetStarted(props: AppDependencies) {
+  const [datasourceId, setDatasourceId] = useState(undefined);
+
   let steps;
   if (props.config.ui.backend_configurable) {
     steps = [addBackendStep, ...setOfSteps];
@@ -167,6 +171,7 @@ export function GetStarted(props: AppDependencies) {
   return (
     <>
       <div className="panel-restrict-width">
+      <SecurityPluginTopNavMenu {...props} dataSourcePickerReadOnly={false} random={setDatasourceId}/>
         <EuiPageHeader>
           <EuiTitle size="l">
             <h1>Get started</h1>
@@ -231,7 +236,7 @@ export function GetStarted(props: AppDependencies) {
               iconType="refresh"
               fill
               onClick={() => {
-                httpDelete(props.coreStart.http, API_ENDPOINT_CACHE, {dataSourceId: '84e72d90-db00-11ee-baf1-55ab53c9cfb9'});
+                httpDelete(props.coreStart.http, API_ENDPOINT_CACHE, {dataSourceId: datasourceId});
               }}
             >
               Purge cache
