@@ -257,22 +257,36 @@ export function AppRouter(props: AppDependencies) {
               path={ROUTE_MAP.tenants.href}
               render={() => {
                 setGlobalBreadcrumbs(ResourceType.tenants);
-                return <><SecurityPluginTopNavMenu dataSourcePickerReadOnly={true} {...props}/><TenantList tabID={'Manage'} {...props} /></>;
+                return (
+                  <>
+                    <SecurityPluginTopNavMenu dataSourcePickerReadOnly={true} {...props} />
+                    <TenantList tabID={'Manage'} {...props} />
+                  </>
+                );
               }}
             />
             <Route
               path={ROUTE_MAP.tenantsConfigureTab.href}
               render={() => {
                 setGlobalBreadcrumbs(ResourceType.tenants);
-                
-                return <><SecurityPluginTopNavMenu dataSourcePickerReadOnly={true} {...props}/><TenantList tabID={'Configure'} {...props} /></>;
+
+                return (
+                  <>
+                    <SecurityPluginTopNavMenu dataSourcePickerReadOnly={true} {...props} />
+                    <TenantList tabID={'Configure'} {...props} />
+                  </>
+                );
               }}
             />
             <Route
               path={ROUTE_MAP.getStarted.href}
               render={() => {
                 setGlobalBreadcrumbs();
-                return (<><GetStarted {...props} /></>);
+                return (
+                  <>
+                    <GetStarted {...props} />
+                  </>
+                );
               }}
             />
             <Redirect exact from="/" to={LANDING_PAGE_URL} />

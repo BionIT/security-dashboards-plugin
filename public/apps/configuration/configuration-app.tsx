@@ -27,7 +27,7 @@ export function renderApp(
   securityPluginStartDeps: SecurityPluginStartDependencies,
   params: AppMountParameters,
   config: ClientConfigType,
-  setHeaderActionMenu: AppMountParameters['setHeaderActionMenu'],
+  setHeaderActionMenu: AppMountParameters['setHeaderActionMenu']
 ) {
   const deps = { coreStart, securityPluginStartDeps, params, config, setHeaderActionMenu };
   ReactDOM.render(

@@ -15,20 +15,28 @@
 
 import React from 'react';
 import { CoreStart } from 'opensearch-dashboards/public';
-import { ClientConfigType } from '../../types';
 import { NavigationPublicPluginStart } from 'src/plugins/navigation/public/types';
+import { ClientConfigType } from '../../types';
 import { PLUGIN_NAME } from '../../../common';
 import { AppDependencies } from '../types';
 
 export interface TopNavMenuProps extends AppDependencies {
-  dataSourcePickerReadOnly: boolean
+  dataSourcePickerReadOnly: boolean;
   random: any;
 }
 
 export const SecurityPluginTopNavMenu = (props: TopNavMenuProps) => {
-  const {securityPluginStartDeps, dataSourcePickerReadOnly, setHeaderActionMenu} = props;
+  const { securityPluginStartDeps, dataSourcePickerReadOnly, setHeaderActionMenu } = props;
   const TopNavMenu = securityPluginStartDeps.navigation.ui.TopNavMenu;
   const dataSourceEnabled = securityPluginStartDeps.dataSource.dataSourceEnabled;
-  
-  return <TopNavMenu appName={PLUGIN_NAME} disableDataSourcePicker={dataSourcePickerReadOnly} showDataSourcePicker={dataSourceEnabled} setMenuMountPoint={setHeaderActionMenu} dataSourceCallBackFunc={props.random}/>
-}
+
+  return (
+    <TopNavMenu
+      appName={PLUGIN_NAME}
+      disableDataSourcePicker={dataSourcePickerReadOnly}
+      showDataSourcePicker={dataSourceEnabled}
+      setMenuMountPoint={setHeaderActionMenu}
+      dataSourceCallBackFunc={props.random}
+    />
+  );
+};

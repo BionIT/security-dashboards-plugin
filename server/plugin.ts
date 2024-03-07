@@ -90,7 +90,7 @@ export class SecurityPlugin implements Plugin<SecurityPluginSetup, SecurityPlugi
     this.savedObjectClientWrapper = new SecuritySavedObjectsClientWrapper();
   }
 
-  public async setup(core: CoreSetup, {dataSource} : SecurityPluginSetupDependencies) {
+  public async setup(core: CoreSetup, { dataSource }: SecurityPluginSetupDependencies) {
     this.logger.debug('opendistro_security: Setup');
     const dataSourceEnabled = !!dataSource;
 
@@ -105,7 +105,7 @@ export class SecurityPlugin implements Plugin<SecurityPluginSetup, SecurityPlugi
         plugins: [opensearchSecurityConfigurationPlugin, opensearchSecurityPlugin],
       }
     );
-    if (dataSourceEnabled){
+    if (dataSourceEnabled) {
       dataSource.registerCustomApiSchema(opensearchSecurityConfigurationPlugin);
       dataSource.registerCustomApiSchema(opensearchSecurityPlugin);
     }

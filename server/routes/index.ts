@@ -748,40 +748,39 @@ export function defineRoutes(router: IRouter, dataSourceEnabled: boolean) {
       validate: {
         body: schema.object({
           dataSourceId: schema.maybe(schema.string()),
-        })
-      }
+        }),
+      },
     },
     async (context, request, response) => {
       if (!dataSourceEnabled || !request.body?.dataSourceId) {
-      const client = context.security_plugin.esClient.asScoped(request);
-      let esResponse;
-      try {
-        esResponse = await client.callAsCurrentUser('opensearch_security.clearCache');
-        return response.ok({
-          body: {
-            message: esResponse.message,
-          },
-        });
-      } catch (error) {
-        return errorResponse(response, error);
-      }
-    } else {
-      const client = context.dataSource.opensearch.legacy.getClient(request.body?.dataSourceId);
-      let esResponse;
-      try{
-        esResponse = await client.callAPI('opensearch_security.clearCache', {});
-        console.log(esResponse)
-        return response.ok({
-          body: {
-            message: 'test',
-          },
-        });
-      } catch (error) {
-        return errorResponse(response, error);
+        const client = context.security_plugin.esClient.asScoped(request);
+        let esResponse;
+        try {
+          esResponse = await client.callAsCurrentUser('opensearch_security.clearCache');
+          return response.ok({
+            body: {
+              message: esResponse.message,
+            },
+          });
+        } catch (error) {
+          return errorResponse(response, error);
+        }
+      } else {
+        const client = context.dataSource.opensearch.legacy.getClient(request.body?.dataSourceId);
+        let esResponse;
+        try {
+          esResponse = await client.callAPI('opensearch_security.clearCache', {});
+          console.log(esResponse);
+          return response.ok({
+            body: {
+              message: 'test',
+            },
+          });
+        } catch (error) {
+          return errorResponse(response, error);
+        }
       }
     }
-
-  }
   );
 
   /**
