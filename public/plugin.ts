@@ -117,7 +117,8 @@ export class SecurityPlugin
             depsStart as SecurityPluginStartDependencies,
             params,
             config,
-            params.setHeaderActionMenu
+            params.setHeaderActionMenu,
+            deps.dataSourceManagement,
           );
         },
         category: DEFAULT_APP_CATEGORIES.management,

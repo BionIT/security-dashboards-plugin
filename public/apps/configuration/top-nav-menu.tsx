@@ -26,17 +26,23 @@ export interface TopNavMenuProps extends AppDependencies {
 }
 
 export const SecurityPluginTopNavMenu = (props: TopNavMenuProps) => {
-  const { securityPluginStartDeps, dataSourcePickerReadOnly, setHeaderActionMenu } = props;
-  const TopNavMenu = securityPluginStartDeps.navigation.ui.TopNavMenu;
+  const { securityPluginStartDeps, dataSourcePickerReadOnly, setHeaderActionMenu, dataSourceManagement, coreStart } = props;
+  const DataSourceMenu = dataSourceManagement.ui.DataSourceMenu;
   const dataSourceEnabled = securityPluginStartDeps.dataSource.dataSourceEnabled;
+  const savedObjects = coreStart.savedObjects.client;
+  const notifications = coreStart.notifications;
 
   return (
-    <TopNavMenu
+    <DataSourceMenu
       appName={PLUGIN_NAME}
-      disableDataSourcePicker={dataSourcePickerReadOnly}
-      showDataSourcePicker={dataSourceEnabled}
+      disableDataSourceSelectable={dataSourcePickerReadOnly}
+      showDataSourceSelectable={dataSourceEnabled}
       setMenuMountPoint={setHeaderActionMenu}
       dataSourceCallBackFunc={props.random}
+      savedObjects={savedObjects}
+      notifications={notifications}
+      fullWidth={false}
+      hideLocalCluster={false}
     />
   );
 };
